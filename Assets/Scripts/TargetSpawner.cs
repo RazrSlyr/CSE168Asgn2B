@@ -9,6 +9,8 @@ public class TargetSpawner : MonoBehaviour
 
     [SerializeField]
     private Transform playerCamera;
+    [SerializeField]
+    private OVRInput.RawButton clearButton;
 
     // Start is called before the first frame update
     void Start()
@@ -16,14 +18,27 @@ public class TargetSpawner : MonoBehaviour
         StartCoroutine(SpawnTarget());
     }
 
+    private void RemoveAllSpawns() {
+        GameObject[] allSpawns = GameObject.FindGameObjectsWithTag("Target");
+        foreach (GameObject spawn in allSpawns) {
+            Destroy(spawn);
+        }
+    }
+
+    public void Update() {
+        if (OVRInput.GetDown(clearButton)) {
+            RemoveAllSpawns();
+        }
+    }
+
     private IEnumerator SpawnTarget() {
         while (true) {
-            float xDisplacement = (1f + Random.value / 2) * Mathf.Sign(Random.value - 0.5f);
-            float zDisplacement = (1f + Random.value / 2) * Mathf.Sign(Random.value - 0.5f);
+            yield return new WaitForSeconds(5);
+            float xDisplacement = (0.5f + Random.value / 2) * Mathf.Sign(Random.value - 0.5f);
+            float zDisplacement = (0.5f + Random.value / 2) * Mathf.Sign(Random.value - 0.5f);
             GameObject cloneTarget = 
                 Instantiate(target, playerCamera.position + new Vector3(xDisplacement, 0, zDisplacement), Quaternion.identity);
             cloneTarget.transform.LookAt(playerCamera);
-            yield return new WaitForSeconds(5);
         }
     }
 }

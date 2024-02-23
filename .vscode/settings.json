@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MRTest.sln"
+    "dotnet.defaultSolution": "CSE168Asgn2A.sln"
 }
