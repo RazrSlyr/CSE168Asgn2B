@@ -10,7 +10,7 @@ public class CubeSpawner : MonoBehaviour
     [SerializeField] private OVRInput.RawButton grabButton;
     [SerializeField] private OVRInput.RawButton despawnButton;
     [SerializeField] private GameObject cubePrefab;
-    private GameObject currentCube = null;
+    private GameObject newlySpawnedCube = null;
     private bool rightHandFull = false;
     private bool leftHandFull = false;
     private GameObject grabbableCube = null;
@@ -21,9 +21,9 @@ public class CubeSpawner : MonoBehaviour
         Collider[] cubes = Physics.OverlapSphere(leftControllerPivot.transform.position, 0.1f);
         foreach (Collider item in cubes)
         {
-            if (item.GetComponent<Grabbable>() && closestCube == null || 
+            if (item != newlySpawnedCube && item.GetComponent<Grabbable>() && (closestCube == null || 
                 Vector3.Distance(leftControllerPivot.transform.position, item.transform.position) <
-                Vector3.Distance(leftControllerPivot.transform.position, closestCube.transform.position)) 
+                Vector3.Distance(leftControllerPivot.transform.position, closestCube.transform.position))) 
             {
                 closestCube = item.gameObject;
             }
@@ -34,7 +34,7 @@ public class CubeSpawner : MonoBehaviour
     private void RemoveAllSpawns() {
         GameObject[] allSpawns = GameObject.FindGameObjectsWithTag("Spawned");
         foreach (GameObject spawn in allSpawns) {
-            if (spawn != currentCube && (!leftHandFull || spawn != grabbableCube)){
+            if (spawn != newlySpawnedCube && (!leftHandFull || spawn != grabbableCube)){
                 Destroy(spawn);
             }
         }
@@ -49,7 +49,7 @@ public class CubeSpawner : MonoBehaviour
                 if (grabbableCube != null) {
                     grabbableCube.GetComponent<Grabbable>().NotGrabbable();
                 }
-                if (newGrabbableCube != null) {
+                if (newGrabbableCube != null && newGrabbableCube != newlySpawnedCube) {
                     newGrabbableCube.GetComponent<Grabbable>().ShowGrabbable();
                 }
                 grabbableCube = newGrabbableCube;
@@ -75,20 +75,20 @@ public class CubeSpawner : MonoBehaviour
 
         if (!rightHandFull && OVRInput.GetDown(spawnButton))
         {
-            currentCube = Instantiate(cubePrefab, rightControllerPivot.transform.position, Quaternion.identity);
-            currentCube.GetComponent<Grabbable>().Grab(rightControllerPivot);
+            newlySpawnedCube = Instantiate(cubePrefab, rightControllerPivot.transform.position, Quaternion.identity);
+            newlySpawnedCube.GetComponent<Grabbable>().Grab(rightControllerPivot);
             rightHandFull = true;
         }
 
         if (rightHandFull && OVRInput.GetUp(spawnButton))
         {
-            currentCube.transform.parent = null;
-            var ballPos = currentCube.transform.position;
+            newlySpawnedCube.transform.parent = null;
+            var ballPos = newlySpawnedCube.transform.position;
             var vel = trackingspace.rotation * OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
             var angVel = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
-            currentCube.GetComponent<Grabbable>().Release(ballPos, vel, angVel);
+            newlySpawnedCube.GetComponent<Grabbable>().Release(ballPos, vel, angVel);
             rightHandFull = false;
-            currentCube = null;
+            newlySpawnedCube = null;
         }
 
         if (OVRInput.GetDown(despawnButton)) {
