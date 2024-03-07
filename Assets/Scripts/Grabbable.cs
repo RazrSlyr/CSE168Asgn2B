@@ -33,4 +33,10 @@ public class Grabbable : MonoBehaviour
     public void NotGrabbable() {
         GetComponent<Renderer>().material = defaultMat;
     }
+
+    public void OnTriggerEnter(Collider collider) {
+        if (collider.CompareTag("Hoop")) {
+            Destroy(collider.gameObject);
+        }
+    }
 }

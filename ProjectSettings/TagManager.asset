@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawned
   - Target
+  - Hoop
   layers:
   - Default
   - TransparentFX

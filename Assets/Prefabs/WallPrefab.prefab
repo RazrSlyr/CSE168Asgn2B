@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9067944875555218759}
   - component: {fileID: 4809617093734410198}
+  - component: {fileID: 3817075329046192161}
   m_Layer: 0
   m_Name: WallPrefab
   m_TagString: Untagged
@@ -45,6 +46,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab3ec25e32ce0c4380714d75e39cb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3817075329046192161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5124949934626458935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc7a476f701c26348bdfa2e976d0166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoop: {fileID: 0}
+  collider: {fileID: 6190342101685559287}
 --- !u!1 &7657628400127638695
 GameObject:
   m_ObjectHideFlags: 0

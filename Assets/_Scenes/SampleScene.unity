@@ -743,17 +743,23 @@ PrefabInstance:
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}
       propertyPath: PrefabOverrides.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}
+      propertyPath: PrefabOverrides.Array.data[0].Prefab
+      value: 
+      objectReference: {fileID: 4809617093734410198, guid: b60ab3c8299aade448bdbff5940cc0c4,
+        type: 3}
+    - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
+        type: 3}
       propertyPath: PrefabOverrides.Array.data[0].ClassificationLabel
-      value: WALL_FACE
+      value: FLOOR
       objectReference: {fileID: 0}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}
       propertyPath: PrefabOverrides.Array.data[0]._editorClassificationIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 747806495401477014, guid: c813208e672e3074bbe118e1a9ee94fd,
         type: 3}
@@ -858,6 +864,7 @@ GameObject:
   - component: {fileID: 1573414878}
   - component: {fileID: 1573414877}
   - component: {fileID: 1573414879}
+  - component: {fileID: 1573414880}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -915,6 +922,18 @@ MonoBehaviour:
   target: {fileID: 132146487000206860, guid: 82536824450782844876a53169d6b4f0, type: 3}
   playerCamera: {fileID: 207147541}
   clearButton: 256
+--- !u!114 &1573414880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573414876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b64eee9874f0643b5a17725dbc4ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1639253532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a,
