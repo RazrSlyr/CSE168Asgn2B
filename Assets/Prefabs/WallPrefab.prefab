@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7a476f701c26348bdfa2e976d0166e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoop: {fileID: 0}
+  hoop: {fileID: 5326684437788853560, guid: 85f56138a6f2b8c47822d74797965f82, type: 3}
   collider: {fileID: 6190342101685559287}
 --- !u!1 &7657628400127638695
 GameObject:
